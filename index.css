@@ -15,11 +15,19 @@ img:hover {
   cursor: pointer;
 }
 
-#toggle {
+#toggle-container {
   position: absolute;
   right: 30px;
   top: 30px;
   height: 60px;
   width: 60px;
+}
+
+#toggle {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 100%;
+  width: 100%;
 }
 
