@@ -1,14 +1,29 @@
 const imagePercent = 0.95;
+var IsRadiant = true;
+const radiantColor = "lightblue";
+const direColor = "red";
 const meepmerp = document.getElementById("audio");
-const radiantImage = document.getElementById("radiant");
-radiantImage.onclick=function() {
+const towerImage = document.getElementById("tower");
+const button = document.getElementById("toggle");
+towerImage.onclick=function() {
   meepmerp.currentTime = 0;
   meepmerp.play();
 }
-radiantImage.ondragstart = function() { return false; };
-radiantImage.onmousedown = function() {
-  radiantImage.style.height = radiantImage.clientHeight * imagePercent;
+towerImage.ondragstart = function() { return false; };
+towerImage.onmousedown = function() {
+  towerImage.style.height = towerImage.clientHeight * imagePercent;
 }
-radiantImage.onmouseup = function() {
-  radiantImage.style.height = radiantImage.clientHeight / imagePercent;
+towerImage.onmouseup = function() {
+  towerImage.style.height = towerImage.clientHeight / imagePercent;
+}
+
+toggle.onclick = function() {
+  if (IsRadiant) {
+    towerImage.src="direTower.png"
+    document.body.style.background = direColor;
+  } else {
+    towerImage.src="radiantTower.png"
+    document.body.style.background = radiantColor;
+  }
+  IsRadiant = !IsRadiant;
 }
