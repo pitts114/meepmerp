@@ -1,8 +1,7 @@
 const imagePercent = 0.95;
-var IsRadiant = true;
 const radiantColor = "lightblue";
 const direColor = "darkred";
-
+var isRadiant;
 const meepmerp = document.getElementById("audio");
 const towerImage = document.getElementById("tower");
 const button = document.getElementById("toggle");
@@ -17,6 +16,43 @@ function setMouseBehavior(element) {
   }
 }
 
+function setRadiant() {
+  towerImage.src="radiantTower.png"
+  document.body.style.background = radiantColor;
+  localStorage.setItem('isRadiant', 'true');
+}
+
+function setDire() {
+  towerImage.src="direTower.png"
+  document.body.style.background = direColor;
+  localStorage.setItem('isRadiant', 'false');
+}
+
+function toggle() {
+  if (isRadiant) {
+    setDire();
+  } else {
+    setRadiant();
+  }
+  isRadiant = !isRadiant;
+}
+
+
+isRadiant = localStorage.getItem('isRadiant'); //str or undefined
+console.log(isRadiant);
+if (!isRadiant) {
+  isRadiant = true;
+  localStorage.setItem('isRadiant', 'true');
+} else {
+  if (isRadiant == 'true') {
+    isRadiant = true;
+    setRadiant();
+  } else {
+    isRadiant = false;
+    setDire();
+  }
+}
+
 setMouseBehavior(towerImage);
 setMouseBehavior(button);
 
@@ -26,13 +62,4 @@ towerImage.onclick=function() {
   meepmerp.play();
 }
 
-button.onclick = function() {
-  if (IsRadiant) {
-    towerImage.src="direTower.png"
-    document.body.style.background = direColor;
-  } else {
-    towerImage.src="radiantTower.png"
-    document.body.style.background = radiantColor;
-  }
-  IsRadiant = !IsRadiant;
-}
+button.onclick = toggle;
