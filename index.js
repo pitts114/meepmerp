@@ -14,6 +14,12 @@ function setMouseBehavior(element) {
   element.onmouseup = function() {
     element.style.height = element.clientHeight / imagePercent;
   }
+  element.ontouchstart = function() {
+    element.style.height = element.clientHeight * imagePercent;
+  }
+  element.ontouchend = function() {
+    element.style.height = element.clientHeight / imagePercent;
+  }
 }
 
 function setRadiant() {
