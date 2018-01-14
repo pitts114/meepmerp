@@ -5,7 +5,7 @@ body {
   overflow: hidden;
 }
 
-img {
+#tower {
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -17,11 +17,9 @@ img:hover {
 
 #toggle {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  border: none;
+  right: 30px;
+  top: 30px;
+  height: 60px;
+  width: 60px;
 }
 
-#dire {
-  visibility: hidden;
-}

@@ -1,23 +1,32 @@
 const imagePercent = 0.95;
 var IsRadiant = true;
 const radiantColor = "lightblue";
-const direColor = "red";
+const direColor = "darkred";
+
 const meepmerp = document.getElementById("audio");
 const towerImage = document.getElementById("tower");
 const button = document.getElementById("toggle");
+
+function setMouseBehavior(element) {
+  element.ondragstart = function() { return false; };
+  element.onmousedown = function() {
+    element.style.height = element.clientHeight * imagePercent;
+  }
+  element.onmouseup = function() {
+    element.style.height = element.clientHeight / imagePercent;
+  }
+}
+
+setMouseBehavior(towerImage);
+setMouseBehavior(button);
+
+
 towerImage.onclick=function() {
   meepmerp.currentTime = 0;
   meepmerp.play();
 }
-towerImage.ondragstart = function() { return false; };
-towerImage.onmousedown = function() {
-  towerImage.style.height = towerImage.clientHeight * imagePercent;
-}
-towerImage.onmouseup = function() {
-  towerImage.style.height = towerImage.clientHeight / imagePercent;
-}
 
-toggle.onclick = function() {
+button.onclick = function() {
   if (IsRadiant) {
     towerImage.src="direTower.png"
     document.body.style.background = direColor;
