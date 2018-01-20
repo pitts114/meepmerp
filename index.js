@@ -6,19 +6,27 @@ const meepmerp = document.getElementById("audio");
 const towerImage = document.getElementById("tower");
 const button = document.getElementById("toggle");
 
+function shrinkElement(element) {
+  element.style.height = element.clientHeight * imagePercent;
+}
+
+function growElement(element) {
+  element.style.height = element.clientHeight / imagePercent;
+}
+
 function setMouseBehavior(element) {
   element.ondragstart = function() { return false; };
   element.onmousedown = function() {
-    element.style.height = element.clientHeight * imagePercent;
+    shrinkElement(element);
   }
   element.onmouseup = function() {
-    element.style.height = element.clientHeight / imagePercent;
+    growElement(element);
   }
   element.ontouchstart = function() {
-    element.style.height = element.clientHeight * imagePercent;
+    shrinkElement(element);
   }
   element.ontouchend = function() {
-    element.style.height = element.clientHeight / imagePercent;
+    growElement(element);
   }
 }
 
