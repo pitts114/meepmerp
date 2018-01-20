@@ -45,7 +45,6 @@ function toggle() {
 
 
 isRadiant = localStorage.getItem('isRadiant'); //str or undefined
-console.log(isRadiant);
 if (!isRadiant) {
   isRadiant = true;
   localStorage.setItem('isRadiant', 'true');
