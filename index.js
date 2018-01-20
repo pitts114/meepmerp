@@ -31,15 +31,19 @@ function setMouseBehavior(element) {
 }
 
 function setRadiant() {
-  towerImage.src="radiantTower.png"
-  document.body.style.background = radiantColor;
-  localStorage.setItem('isRadiant', 'true');
+  towerImage.onload = function() {
+    document.body.style.background = radiantColor;
+    localStorage.setItem('isRadiant', 'true');
+  };
+  towerImage.src="radiantTower.png";
 }
 
 function setDire() {
-  towerImage.src="direTower.png"
-  document.body.style.background = direColor;
-  localStorage.setItem('isRadiant', 'false');
+  towerImage.onload = function() {
+    document.body.style.background = direColor;
+    localStorage.setItem('isRadiant', 'false');
+  }
+  towerImage.src="direTower.png";
 }
 
 function toggle() {
