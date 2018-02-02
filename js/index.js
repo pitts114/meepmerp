@@ -1,10 +1,32 @@
 const imagePercent = 0.95;
-const radiantColor = "lightblue";
-const direColor = "darkred";
+const radiantColor = 'lightblue';
+const direColor = 'darkred';
+const radiantTextColor = 'white';
+const direTextColor = 'black';
 var isRadiant;
-const meepmerp = document.getElementById("audio");
-const towerImage = document.getElementById("tower");
-const button = document.getElementById("toggle");
+const meepmerp = document.getElementById('audio');
+const towerImage = document.getElementById('tower');
+const button = document.getElementById('toggle');
+const counter = document.getElementById('counter');
+let sessionCount = 0;
+const clicksToReveal = 20;
+
+function count() {
+  //add 1 to stored click count and returns the new amount
+  const clicks = 'clicks';
+  const count = Number(localStorage.getItem(clicks));
+  if (!count) {
+    localStorage.setItem(clicks, '0');
+  }
+  const newCount = count + 1;
+  sessionCount++;
+  localStorage.setItem(clicks, newCount.toString());
+
+  if (sessionCount >= clicksToReveal) {
+    counter.style.display = 'block';
+    counter.innerHTML = newCount;
+  }
+}
 
 function shrinkElement(element) {
   element.style.height = element.clientHeight * imagePercent;
@@ -34,16 +56,18 @@ function setRadiant() {
   towerImage.onload = function() {
     document.body.style.background = radiantColor;
     localStorage.setItem('isRadiant', 'true');
+    counter.style.color = radiantTextColor;
   };
-  towerImage.src="radiantTower.png";
+  towerImage.src='img/radiantTower.png';
 }
 
 function setDire() {
   towerImage.onload = function() {
     document.body.style.background = direColor;
     localStorage.setItem('isRadiant', 'false');
+    counter.style.color = direTextColor;
   }
-  towerImage.src="direTower.png";
+  towerImage.src='img/direTower.png';
 }
 
 function toggle() {
@@ -74,7 +98,8 @@ setMouseBehavior(towerImage);
 setMouseBehavior(button);
 
 
-towerImage.onclick=function() {
+towerImage.onclick = function() {
+  count();
   meepmerp.currentTime = 0;
   meepmerp.play();
 }
